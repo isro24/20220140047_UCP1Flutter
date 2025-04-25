@@ -83,7 +83,20 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               const SizedBox(height: 40),
-              
+              FilledButton(
+                onPressed: (){
+
+                }, 
+                style: FilledButton.styleFrom(
+                  backgroundColor: Colors.orange[700]
+                ),
+                child: Text('Masuk')
+              ),
+              TextButton(
+                onPressed: (){
+                }, 
+                child: Text('Belum memiliki akun? Silahkan Daftar disini!')
+              ),
             ],
           ),
         ),
