@@ -13,7 +13,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController noHpController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController konfirmasiPasswordController = TextEditingController();
-
+  bool _passwordVisible = true;
+  bool _passwordConfirmVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -176,6 +177,17 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide(color: Colors.amber)
                             ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                                color: Colors.grey,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                });
+                              },
+                            ),
                             prefixIcon: Padding(
                                 padding: EdgeInsets.all(0.0),
                                 child: Icon(
@@ -184,6 +196,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ), 
                               ),
                             ),
+                          obscureText: !_passwordVisible,
                           validator: (value){
                             if (value == null || value.isEmpty){
                               return 'Password tidak boleh kosong';
@@ -217,6 +230,17 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide(color: Colors.amber)
                             ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _passwordConfirmVisible ? Icons.visibility : Icons.visibility_off,
+                                color: Colors.grey,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _passwordConfirmVisible = !_passwordConfirmVisible;
+                                });
+                              },
+                            ),
                             prefixIcon: Padding(
                                 padding: EdgeInsets.all(0.0),
                                 child: Icon(
@@ -225,6 +249,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ), 
                               ),
                             ),
+                          obscureText: !_passwordConfirmVisible,
                           validator: (value){
                             if (value == null || value.isEmpty){
                               return 'Konfirmasi Password tidak boleh kosong';
