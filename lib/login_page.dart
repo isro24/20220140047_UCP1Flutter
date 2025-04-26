@@ -28,17 +28,27 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Selamat Datang Kembali',
+              Image(image: AssetImage('assets/images/login.png'), height: 150, width: 150,),
+              Text('SELAMAT DATANG KEMBALI',
                 style: TextStyle(
-                  fontSize: 27, fontWeight: FontWeight.w500),),
+                  fontSize: 24, fontWeight: FontWeight.w500),
+                ),
               const SizedBox(height: 30),
-              Text('Email'),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text('Email',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),            
               TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(color: Colors.amber)
                   ),
                     prefixIcon: Padding(
@@ -57,13 +67,20 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               const SizedBox(height: 30),
-              Text('Password'),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text('Password',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500),
+                ),
+              ), 
+              const SizedBox(height: 10),
               TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                    border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(color: Colors.amber)
                   ),
                   prefixIcon: Padding(
@@ -82,21 +99,43 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 40),
-              FilledButton(
-                onPressed: (){
-
-                }, 
-                style: FilledButton.styleFrom(
-                  backgroundColor: Colors.orange[700]
+              const SizedBox(height: 60),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: () {     
+                  }, 
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    minimumSize: Size(200, 60),
+                    backgroundColor: Colors.orange[700]
+                  ),
+                  child: Text('Masuk'),
                 ),
-                child: Text('Masuk')
               ),
-              TextButton(
-                onPressed: (){
-                }, 
-                child: Text('Belum memiliki akun? Silahkan Daftar disini!')
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center, 
+                children: [
+                  Text('Belum memiliki akun? Silahkan',
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                    },
+                    child: Text('Daftar disini!',
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 255, 94, 0),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
