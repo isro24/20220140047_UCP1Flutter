@@ -11,6 +11,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  bool _passwordVisible = true;
 
   @override
   void initState(){
@@ -46,7 +47,6 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  labelText: 'Email',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(color: Colors.amber)
@@ -78,11 +78,21 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
-                  labelText: 'Password',
                    border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(color: Colors.amber)
                   ),
+                  suffixIcon: IconButton(
+                  icon: Icon(
+                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _passwordVisible = !_passwordVisible;
+                    });
+                  },
+                ),
                   prefixIcon: Padding(
                       padding: EdgeInsets.all(0.0),
                       child: Icon(
@@ -91,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                       ), 
                     ),
                   ),
-                obscureText: true,
+                obscureText: !_passwordVisible,
                 validator: (value){
                   if (value == null || value.isEmpty){
                     return 'Password tidak boleh kosong';
