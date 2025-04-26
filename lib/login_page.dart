@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -141,6 +142,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                     onPressed: () {
+                      Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => RegisterPage()));
                     },
                     child: Text('Daftar disini!',
                       style: TextStyle(
