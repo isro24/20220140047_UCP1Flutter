@@ -8,8 +8,214 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController namaLengkapController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController noHpController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController konfirmasiPasswordController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final _formKey = GlobalKey<FormState>();
+    return  Scaffold(
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(image: AssetImage('assets/images/login.png'), height: 150, width: 150,),
+              Text('Daftar Akun Baru',
+                style: TextStyle(
+                  fontSize: 27, fontWeight: FontWeight.w500),
+                ),
+              const SizedBox(height: 30),
+              TextFormField(
+                controller: namaLengkapController,
+                decoration: InputDecoration(
+                  hintText: 'Nama Lengkap',
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  labelText: 'Nama Lengkap',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(color: Colors.amber)
+                  ),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.all(0.0),
+                      child: Icon(
+                        Icons.person_2,
+                        color: Colors.black,
+                      ), 
+                    ),
+                  ),
+                  validator: (value){
+                  if (value == null || value.isEmpty){
+                    return 'Nama lengkap tidak boleh kosong';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 30),
+              Row(
+                children: [
+                  Expanded(
+                    child:  TextFormField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      hintText: 'Email',
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      labelText: 'Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: Colors.amber),
+                      ),
+                      prefixIcon: Padding(
+                          padding: EdgeInsets.all(0.0),
+                          child: Icon(
+                            Icons.email,
+                            color: Colors.black,
+                          ), 
+                        ),
+                      ),
+                    validator: (value){
+                      if (value == null || value.isEmpty){
+                        return 'Email tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                  ),
+                  ),
+                  const SizedBox(width: 15,),
+                  Expanded(child: TextFormField(
+                    controller: noHpController,
+                    decoration: InputDecoration(
+                      hintText: 'No Hp',
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      labelText: 'No Hp',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: Colors.amber)
+                      ),
+                      prefixIcon: Padding(
+                          padding: EdgeInsets.all(0.0),
+                          child: Icon(
+                            Icons.phone,
+                            color: Colors.black,
+                          ), 
+                        ),
+                      ),
+                    validator: (value){
+                      if (value == null || value.isEmpty){
+                        return 'No Hp tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                  ),
+                )
+              ],
+              ),
+              const SizedBox(height: 40,),
+              Row(
+                children: [
+                  Expanded(
+                    child:  TextFormField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      hintText: 'Password',
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      labelText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: Colors.amber)
+                      ),
+                      prefixIcon: Padding(
+                          padding: EdgeInsets.all(0.0),
+                          child: Icon(
+                            Icons.lock,
+                            color: Colors.black,
+                          ), 
+                        ),
+                      ),
+                    validator: (value){
+                      if (value == null || value.isEmpty){
+                        return 'Password tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                  ),
+                  ),
+                  const SizedBox(width: 15,),
+                  Expanded(child: TextFormField(
+                    controller: konfirmasiPasswordController,
+                    decoration: InputDecoration(
+                      hintText: 'Konfirmasi Password',
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      labelText: 'Konfirmasi Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: Colors.amber)
+                      ),
+                      prefixIcon: Padding(
+                          padding: EdgeInsets.all(0.0),
+                          child: Icon(
+                            Icons.lock,
+                            color: Colors.black,
+                          ), 
+                        ),
+                      ),
+                    validator: (value){
+                      if (value == null || value.isEmpty){
+                        return 'Konfirmasi Password tidak boleh kosong';
+                      }
+                      return null;
+                      },
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(height: 40),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: () {     
+                  }, 
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    minimumSize: Size(200, 60),
+                    backgroundColor: Colors.orange[700]
+                  ),
+                  child: Text('Daftar'),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center, 
+                children: [
+                  Text('Sudah memiliki akun? Silahkan',
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                    },
+                    child: Text('Login disini!',
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 255, 94, 0),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
