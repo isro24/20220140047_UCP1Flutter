@@ -47,6 +47,9 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
+                  hintText: 'Email',
+                  label: Text('Email'),
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(color: Colors.amber)
@@ -78,6 +81,9 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
+                  hintText: 'Password',
+                  labelText: 'Password',
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
                    border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(color: Colors.amber)
