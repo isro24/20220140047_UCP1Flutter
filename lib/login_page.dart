@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ucp1/register_page.dart';
+import 'package:ucp1/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -121,6 +122,12 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: () {     
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => HomePage(
+                          email: emailController.text,
+                        )));
+                    }    
                   }, 
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1/home_page.dart';
 import 'package:ucp1/login_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -29,7 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(image: AssetImage('assets/images/login.png'), height: 150, width: 150,),
-              Text('Daftar Akun Baru',
+              Text('DAFTAR AKUN BARU',
                 style: TextStyle(
                   fontSize: 27, fontWeight: FontWeight.w500),
                 ),
@@ -267,7 +268,13 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(
                 width: double.infinity,
                 child: FilledButton(
-                  onPressed: () {     
+                  onPressed: () { 
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => HomePage(
+                          email: emailController.text,
+                        )));
+                    }    
                   }, 
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
