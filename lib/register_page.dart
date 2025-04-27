@@ -270,10 +270,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: FilledButton(
                   onPressed: () { 
                     if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => HomePage(
-                          email: emailController.text,
-                        )));
+                      if (passwordController.text != konfirmasiPasswordController.text){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Password tidak sama'),
+                            duration: Duration(seconds: 2),
+                            backgroundColor: Colors.orange[700],
+                          )
+                        );
+                      } else {
+                        Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => HomePage(
+                            email: emailController.text,
+                            )
+                          )
+                        );
+                      }
                     }    
                   }, 
                   style: FilledButton.styleFrom(
