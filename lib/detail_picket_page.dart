@@ -17,7 +17,7 @@ class DetailPicketPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data $tugasPiket', 
+        title: Text('Detail $tugasPiket', 
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500),
