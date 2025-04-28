@@ -8,6 +8,14 @@ class CustomerDataPage extends StatefulWidget {
 }
 
 class _CustomerDataPageState extends State<CustomerDataPage> {
+
+  final TextEditingController namaCustomerController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController noHpController = TextEditingController();
+  final TextEditingController alamatController = TextEditingController();
+  final TextEditingController provinsiController = TextEditingController();
+  final TextEditingController kodePosController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +49,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                   ),
                   const SizedBox(height: 13),
                   TextFormField(
+                    controller: namaCustomerController,
                     decoration: InputDecoration(
                       hintText: 'Nama Cust',
                       label: Text('Nama Cust'),
@@ -66,6 +75,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                         ), 
                         const SizedBox(height: 13,),
                         TextFormField(
+                          controller: emailController,
                           decoration: InputDecoration(
                             hintText: 'Email',
                             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -93,6 +103,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                         ), 
                         const SizedBox(height: 13,),
                         TextFormField(
+                          controller: noHpController,
                           decoration: InputDecoration(
                             hintText: 'No HP',
                             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -118,6 +129,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                   ),
                   const SizedBox(height: 13),
                   TextFormField(
+                    controller: alamatController,
                     decoration: InputDecoration(
                       hintText: 'Alamat',
                       label: Text('Alamat'),
@@ -143,6 +155,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                         ), 
                         const SizedBox(height: 13,),
                         TextFormField(
+                          controller: provinsiController,
                           decoration: InputDecoration(
                             hintText: 'Provinsi',
                             floatingLabelBehavior: FloatingLabelBehavior.never,
