@@ -10,6 +10,22 @@ class CustomerDataPage extends StatefulWidget {
 class _CustomerDataPageState extends State<CustomerDataPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Data pelanggan', 
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 255, 94, 0),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
   }
 }
