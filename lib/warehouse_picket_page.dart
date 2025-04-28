@@ -17,6 +17,7 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController tanggalController = TextEditingController();
   final TextEditingController tugasPiketController = TextEditingController();
+  final List<String> tugasPiketList = [];
 
   Future<void> _selectDate(BuildContext context)async {
     final DateTime? pickedDate = await showDatePicker(
@@ -38,6 +39,7 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
   }
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Piket Gudang', 
@@ -55,6 +57,7 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
         ),
       ),
       body: Form(
+        key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -156,7 +159,12 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
                     width: 170,
                     child: FilledButton(
                       onPressed: (){
-                    
+                        if (_formKey.currentState?.validate() ?? false) {
+                          setState(() {
+                            tugasPiketList.add(tugasPiketController.text);
+                            tugasPiketController.clear();
+                          });
+                        }
                       }, 
                       style: FilledButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -169,7 +177,39 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
                     ),
                   )
                 ],
-              )
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Daftar Tugas Piket',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: tugasPiketList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: ListTile(
+                        tileColor: Colors.orange[700],
+                        textColor: Colors.white,
+                        title: Text(tugasPiketList[index], ),
+                        trailing: IconButton(
+                          icon: Icon(MdiIcons.arrowRight, color: Colors.white),
+                          onPressed: () {
+                          },
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         )),
