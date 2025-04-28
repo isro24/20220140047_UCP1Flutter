@@ -16,6 +16,15 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
   final TextEditingController provinsiController = TextEditingController();
   final TextEditingController kodePosController = TextEditingController();
 
+  void clearTextFields(){
+    namaCustomerController.clear();
+    emailController.clear();
+    noHpController.clear();
+    alamatController.clear();
+    provinsiController.clear();
+    kodePosController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,6 +192,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                         ), 
                         const SizedBox(height: 13,),
                         TextFormField(
+                          controller: kodePosController,
                           decoration: InputDecoration(
                             hintText: 'Kode Pos',
                             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -203,8 +213,8 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: () {     
-                    
-                  }, 
+
+                }, 
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
@@ -220,7 +230,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                 width: double.infinity,
                 child: OutlinedButton (
                   onPressed: () {     
-
+                    clearTextFields();
                   }, 
                   style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
