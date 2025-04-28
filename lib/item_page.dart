@@ -8,6 +8,21 @@ class ItemPage extends StatefulWidget {
 }
 
 class _ItemPageState extends State<ItemPage> {
+
+  final TextEditingController tanggalController = TextEditingController();
+
+  Future<void> _selectDate(BuildContext context)async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime(2028),
+    );
+
+    setState(() {
+      tanggalController.text = "${pickedDate?.day}/${pickedDate?.month}/${pickedDate?.year}";
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +57,7 @@ class _ItemPageState extends State<ItemPage> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                controller: tanggalController,
                 decoration: InputDecoration(
                   hintText: 'Tanggal Transaksi',
                   label: const Text('Tanggal Transaksi'),
@@ -56,7 +72,7 @@ class _ItemPageState extends State<ItemPage> {
                   ),
                 ),
                 onTap: (){
-
+                  _selectDate(context);
                 },
               ),
               const SizedBox(height: 30),
