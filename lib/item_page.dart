@@ -11,6 +11,21 @@ class _ItemPageState extends State<ItemPage> {
 
   final TextEditingController tanggalController = TextEditingController();
 
+  final List<String> jenisTransaksiList = [
+    'Masuk',
+    'Keluar',
+  ];
+
+  final List<String> jenisBarangList = [
+    'Carries',
+    'Sleeping Bag',
+    'Tenda',
+    'Sepatu'
+  ];
+
+  String? selectedJenisTransaksi;
+  String? selectedJenisBarang;
+
   Future<void> _selectDate(BuildContext context)async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -80,30 +95,44 @@ class _ItemPageState extends State<ItemPage> {
                 decoration: InputDecoration(
                   hintText: 'Jenis Transaksi',
                   label: const Text('Jenis Transaksi'),
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: const BorderSide(color: Colors.amber),
                   ),
                 ),
-                items: [
-                ],
-                onChanged: (value) {},
+                items: jenisTransaksiList.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedJenisTransaksi = value;
+                  });
+                },
               ),
               const SizedBox(height: 30),
               DropdownButtonFormField(
                 decoration: InputDecoration(
                   hintText: 'Jenis Barang',
                   label: const Text('Jenis Barang'),
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: const BorderSide(color: Colors.amber),
                   ),
                 ),
-                items: [
-                ],
-                onChanged: (value) {},
+                items: jenisBarangList.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedJenisBarang = value;
+                  });
+                },
               ),
               const SizedBox(height: 30),
               Row(
