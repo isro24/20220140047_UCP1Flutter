@@ -107,6 +107,12 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
                 onTap: (){
                   _selectDate(context);
                 },
+                validator: (value){
+                  if (value == null || value.isEmpty){
+                    return 'Tanggal tidak boleh kosong';
+                  }
+                  return null;
+                }
               ),
               const SizedBox(height: 20),
               Align(
@@ -135,6 +141,12 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
                             borderSide: const BorderSide(color: Colors.amber),
                           ),
                         ),
+                        validator: (value){
+                          if (value == null || value.isEmpty){
+                            return 'Tugas tidak boleh kosong';
+                          }
+                          return null;
+                        }
                       ),
                       ],
                     ),
