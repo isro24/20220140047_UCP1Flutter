@@ -154,6 +154,23 @@ class _ItemPageState extends State<ItemPage> {
                   ),
                 ],
               ),
+              const SizedBox(height: 60),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: () {     
+                    
+                  }, 
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    minimumSize: Size(200, 60),
+                    backgroundColor: Colors.orange[700]
+                  ),
+                  child: Text('Submit'),
+                ),
+              ),
           ],
         ),
       )
