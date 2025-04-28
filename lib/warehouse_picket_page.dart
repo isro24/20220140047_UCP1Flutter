@@ -15,6 +15,22 @@ class WarehousePicketPage extends StatefulWidget {
 class _WarehousePicketPageState extends State<WarehousePicketPage> {
   
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController tanggalController = TextEditingController();
+  final TextEditingController tugasPiketController = TextEditingController();
+
+  Future<void> _selectDate(BuildContext context)async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime(2028),
+    );
+
+    setState(() {
+      tanggalController.text = "${pickedDate?.day}/${pickedDate?.month}/${pickedDate?.year}";
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -74,6 +90,7 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                controller: tanggalController,
                 decoration: InputDecoration(
                   hintText: 'Pilih Tanggal',
                   label: const Text('Pilih Tanggal'),
@@ -87,6 +104,9 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
                     color: Colors.grey,
                   ),
                 ),
+                onTap: (){
+                  _selectDate(context);
+                },
               ),
               const SizedBox(height: 20),
               Align(
@@ -104,7 +124,8 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
                   Expanded(
                     child: Column(
                       children: [
-                        TextFormField(
+                        TextFormField(  
+                        controller: tugasPiketController,
                         decoration: InputDecoration(
                           hintText: 'Tugas Piket',
                           label: const Text('Tugas Piket'),
