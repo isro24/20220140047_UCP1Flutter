@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1/customer_data_page.dart';
+import 'package:ucp1/item_page.dart';
 import 'package:ucp1/login_page.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:ucp1/warehouse_picket_page.dart';
 
 class HomePage extends StatelessWidget {
   final String email;
@@ -87,6 +90,10 @@ class HomePage extends StatelessWidget {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
+                            Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => WarehousePicketPage(
+                                email: email,
+                              )));
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -116,6 +123,8 @@ class HomePage extends StatelessWidget {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
+                            Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CustomerDataPage()));
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -148,6 +157,8 @@ class HomePage extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(10),
                     onTap: () {
+                      Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => ItemPage()));
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
