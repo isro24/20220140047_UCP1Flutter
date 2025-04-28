@@ -2,13 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class WarehousePicketPage extends StatefulWidget {
-  const WarehousePicketPage({super.key});
+  final String email;
+  const WarehousePicketPage({
+    super.key,
+    required this.email,
+  });
 
   @override
   State<WarehousePicketPage> createState() => _WarehousePicketPageState();
 }
 
 class _WarehousePicketPageState extends State<WarehousePicketPage> {
+  
+  final TextEditingController emailController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    emailController.text = widget.email;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,13 +54,14 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   floatingLabelBehavior: FloatingLabelBehavior.never,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
-                    borderSide: const BorderSide(color: Colors.amber),
                   ),
                 ),
+                readOnly: true,
               ),
               const SizedBox(height: 20),
               Align(
