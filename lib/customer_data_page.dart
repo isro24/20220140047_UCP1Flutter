@@ -185,6 +185,43 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                 ),
               ],
               ),
+              const SizedBox(height: 50),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: () {     
+                    
+                  }, 
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    minimumSize: Size(200, 60),
+                    backgroundColor: Colors.orange[700]
+                  ),
+                  child: Text('Simpan'),
+                ),
+              ),
+              const SizedBox(height: 30),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton (
+                  onPressed: () {     
+
+                  }, 
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    minimumSize: Size(200, 60),
+                    backgroundColor: Colors.white
+                  ),
+                  child: Text('Reset',
+                  style: TextStyle(
+                    color: Colors.orange[700],),
+                  ),
+                ),
+              ),
               ],
             ),
           ),
