@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1/detail_customer_page.dart';
 
 class CustomerDataPage extends StatefulWidget {
   const CustomerDataPage({super.key});
@@ -27,6 +28,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Data pelanggan', 
@@ -44,6 +46,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
         ),
       ),
       body: Form(
+        key: _formKey,
         child: Padding(
           padding: EdgeInsets.all(16.0),
             child: Column(
@@ -67,6 +70,12 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
+                    validator: (value){
+                    if (value == null || value.isEmpty){
+                      return 'Cust tidak boleh kosong';
+                    }
+                    return null;
+                    },
                   ),
                   const SizedBox(height: 30),
               Row(
@@ -93,7 +102,13 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide(color: Colors.amber)
                             ),
-                            ),
+                          ),
+                          validator: (value){
+                          if (value == null || value.isEmpty){
+                            return 'Email tidak boleh kosong';
+                          }
+                          return null;
+                          },
                         ),
                       ],
                     ) 
@@ -121,7 +136,13 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide(color: Colors.amber)
                             ),
-                            ),
+                          ),
+                          validator: (value){
+                          if (value == null || value.isEmpty){
+                            return 'No HP tidak boleh kosong';
+                          }
+                          return null;
+                          },
                         ),
                       ],
                     ) 
@@ -147,6 +168,12 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
+                    validator: (value){
+                    if (value == null || value.isEmpty){
+                      return 'Alamat tidak boleh kosong';
+                    }
+                    return null;
+                    },
                 ),
               const SizedBox(height: 30),
                Row(
@@ -173,7 +200,13 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide(color: Colors.amber)
                             ),
-                            ),
+                          ),
+                          validator: (value){
+                          if (value == null || value.isEmpty){
+                            return 'Provinsi tidak boleh kosong';
+                          }
+                          return null;
+                          },
                         ),
                       ],
                     ) 
@@ -201,7 +234,13 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide(color: Colors.amber)
                             ),
-                            ),
+                          ),
+                          validator: (value){
+                          if (value == null || value.isEmpty){
+                            return 'Kode Pos tidak boleh kosong';
+                          }
+                          return null;
+                          },
                         ),
                       ],
                     ) 
@@ -213,7 +252,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: () {     
-
+                   
                 }, 
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
