@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DetailCustomerPage extends StatefulWidget {
-  final String namaCustomer;
+class DetailCustomerPage extends StatelessWidget {
+   final String namaCustomer;
   final String email;
   final String noHP;
   final String alamat;
   final String provinsi;
   final String kodePos;
-  
+
   const DetailCustomerPage({
     super.key,
     required this.namaCustomer,
@@ -16,18 +16,14 @@ class DetailCustomerPage extends StatefulWidget {
     required this.alamat,
     required this.provinsi,
     required this.kodePos,
+
   });
 
-  @override
-  State<DetailCustomerPage> createState() => _DetailCustomerPageState();
-}
-
-class _DetailCustomerPageState extends State<DetailCustomerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail ${widget.namaCustomer}', 
+        title: Text('Detail $namaCustomer', 
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500),
@@ -52,7 +48,7 @@ class _DetailCustomerPageState extends State<DetailCustomerPage> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    widget.namaCustomer,
+                    namaCustomer,
                     style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -60,7 +56,7 @@ class _DetailCustomerPageState extends State<DetailCustomerPage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    widget.email,
+                    email,
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[700],
@@ -68,7 +64,7 @@ class _DetailCustomerPageState extends State<DetailCustomerPage> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    widget.noHP,
+                    noHP,
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[700],
@@ -85,7 +81,7 @@ class _DetailCustomerPageState extends State<DetailCustomerPage> {
                 const SizedBox(height: 10),
                 TextFormField(
                   readOnly: true,
-                  initialValue: widget.alamat,
+                  initialValue: alamat,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -106,7 +102,7 @@ class _DetailCustomerPageState extends State<DetailCustomerPage> {
                           const SizedBox(height: 10),
                           TextFormField(
                             readOnly: true,
-                            initialValue: widget.provinsi,
+                            initialValue: provinsi,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
@@ -128,7 +124,7 @@ class _DetailCustomerPageState extends State<DetailCustomerPage> {
                           const SizedBox(height: 10),
                           TextFormField(
                             readOnly: true,
-                            initialValue: widget.kodePos,
+                            initialValue: kodePos,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
