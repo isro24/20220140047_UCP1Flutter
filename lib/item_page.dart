@@ -26,7 +26,7 @@ class _ItemPageState extends State<ItemPage> {
   }
 
   final Map<String, int> hargaBarangList = {
-    'Carries': 150000,
+    'Carrier': 150000,
     'Sleeping Bag': 200000,
     'Tenda': 300000,
     'Sepaatu': 500000,
@@ -38,7 +38,7 @@ class _ItemPageState extends State<ItemPage> {
   ];
 
   final List<String> jenisBarangList = [
-    'Carries',
+    'Carrier',
     'Sleeping Bag',
     'Tenda',
     'Sepatu'
@@ -59,6 +59,12 @@ class _ItemPageState extends State<ItemPage> {
     setState(() {
       tanggalController.text = DateFormat('EEEE, d MMMM yyyy', 'id').format(pickedDate!);
     });
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    jumlahBarangController.addListener(calculateTotalPrice);
   }
 
   @override
@@ -259,7 +265,14 @@ class _ItemPageState extends State<ItemPage> {
                   onPressed: () {     
                    if(_formKey.currentState!.validate()){
                       Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => const DetailItemPage(),
+                      builder: (context) => DetailItemPage(
+                        tanggal: tanggalController.text,
+                        jenisTransaksi: jenisTransaksiList.firstWhere((element) => element == selectedJenisTransaksi),
+                        jenisBarang: jenisBarangList.firstWhere((element) => element == selectedJenisBarang),
+                        jumlahBarang: jumlahBarangController.text,
+                        jenisHargaSatuan: hargaSatuanController.text,
+                        totalHarga: totalHarga.toString(),
+                      ),
                     ));
                     }
                   }, 
