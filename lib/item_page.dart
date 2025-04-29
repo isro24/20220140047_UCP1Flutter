@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:ucp1/detail_item_page.dart';
 class ItemPage extends StatefulWidget {
   const ItemPage({super.key});
 
@@ -10,6 +11,8 @@ class ItemPage extends StatefulWidget {
 class _ItemPageState extends State<ItemPage> {
 
   final TextEditingController tanggalController = TextEditingController();
+  final TextEditingController jumlahBarangController = TextEditingController();
+  final TextEditingController hargaSatuanController = TextEditingController();
 
   final List<String> jenisTransaksiList = [
     'Masuk',
@@ -150,6 +153,7 @@ class _ItemPageState extends State<ItemPage> {
                         ), 
                         const SizedBox(height: 13,),
                         TextFormField(
+                          controller: jumlahBarangController,
                           decoration: InputDecoration(
                             hintText: 'Jumlah Barang',
                             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -177,6 +181,7 @@ class _ItemPageState extends State<ItemPage> {
                         ), 
                         const SizedBox(height: 13,),
                         TextFormField(
+                          controller: hargaSatuanController,
                           decoration: InputDecoration(
                             hintText: 'Harga Satuan',
                             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -204,7 +209,9 @@ class _ItemPageState extends State<ItemPage> {
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: () {     
-                    
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => const DetailItemPage(),
+                    ));
                   }, 
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
