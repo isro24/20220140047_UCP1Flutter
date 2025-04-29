@@ -13,6 +13,22 @@ class _ItemPageState extends State<ItemPage> {
   final TextEditingController tanggalController = TextEditingController();
   final TextEditingController jumlahBarangController = TextEditingController();
   final TextEditingController hargaSatuanController = TextEditingController();
+  int totalHarga = 0;
+
+  void calculateTotalPrice() {
+    int jumlahBarang = int.tryParse(jumlahBarangController.text) ?? 0;
+    int hargaSatuan = int.tryParse(hargaSatuanController.text) ?? 0;
+    setState(() {
+      totalHarga = jumlahBarang * hargaSatuan;
+    });
+  }
+
+  final Map<String, int> hargaBarangList = {
+    'Carries': 150000,
+    'Sleeping Bag': 200000,
+    'Tenda': 300000,
+    'Sepaatu': 500000,
+  };
 
   final List<String> jenisTransaksiList = [
     'Masuk',
@@ -41,8 +57,10 @@ class _ItemPageState extends State<ItemPage> {
       tanggalController.text = "${pickedDate?.day}/${pickedDate?.month}/${pickedDate?.year}";
     });
   }
+
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pendataan Barang', 
@@ -60,6 +78,7 @@ class _ItemPageState extends State<ItemPage> {
         ),
       ),
       body: Form(
+        key: _formKey,
         child: Padding(
           padding: EdgeInsets.all(16.0) ,
             child: Column(
@@ -92,9 +111,15 @@ class _ItemPageState extends State<ItemPage> {
                 onTap: (){
                   _selectDate(context);
                 },
+                validator: (value){
+                  if(value == null || value.isEmpty){
+                    return 'Tanggal tidak boleh kosong';
+                  }
+                }
               ),
               const SizedBox(height: 30),
               DropdownButtonFormField(
+                value: selectedJenisTransaksi,
                 decoration: InputDecoration(
                   hintText: 'Jenis Transaksi',
                   label: const Text('Jenis Transaksi'),
@@ -114,9 +139,15 @@ class _ItemPageState extends State<ItemPage> {
                     selectedJenisTransaksi = value;
                   });
                 },
+                validator: (value){
+                  if(value == null || value.isEmpty){
+                    return 'Pilih jenis transaksi';
+                  }
+                }
               ),
               const SizedBox(height: 30),
               DropdownButtonFormField(
+                value: selectedJenisBarang,
                 decoration: InputDecoration(
                   hintText: 'Jenis Barang',
                   label: const Text('Jenis Barang'),
@@ -134,8 +165,15 @@ class _ItemPageState extends State<ItemPage> {
                 onChanged: (value) {
                   setState(() {
                     selectedJenisBarang = value;
+                    hargaSatuanController.text = hargaBarangList[value]!.toString(); 
+                    calculateTotalPrice();
                   });
                 },
+                validator: (value){
+                  if(value == null || value.isEmpty){
+                    return 'Pilih jenis barang';
+                  }
+                }
               ),
               const SizedBox(height: 30),
               Row(
@@ -163,6 +201,11 @@ class _ItemPageState extends State<ItemPage> {
                               borderSide: BorderSide(color: Colors.amber)
                             ),
                             ),
+                            validator: (value){
+                              if(value == null || value.isEmpty){
+                                return 'Jumlah barang tidak boleh kosong';
+                              }
+                            }
                         ),
                       ],
                     ) 
@@ -182,6 +225,7 @@ class _ItemPageState extends State<ItemPage> {
                         const SizedBox(height: 13,),
                         TextFormField(
                           controller: hargaSatuanController,
+                          readOnly: true,
                           decoration: InputDecoration(
                             hintText: 'Harga Satuan',
                             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -198,6 +242,7 @@ class _ItemPageState extends State<ItemPage> {
                               ),
                             ),
                           ),
+                          onChanged: (value) => calculateTotalPrice(),
                         ),
                       ],
                     ) 
@@ -209,9 +254,11 @@ class _ItemPageState extends State<ItemPage> {
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: () {     
-                    Navigator.push(context, MaterialPageRoute(
+                   if(_formKey.currentState!.validate()){
+                      Navigator.push(context, MaterialPageRoute(
                       builder: (context) => const DetailItemPage(),
                     ));
+                    }
                   }, 
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
