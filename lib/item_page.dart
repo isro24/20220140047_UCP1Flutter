@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:ucp1/detail_item_page.dart';
+import 'package:intl/intl.dart';
+
 class ItemPage extends StatefulWidget {
   const ItemPage({super.key});
 
@@ -48,13 +50,14 @@ class _ItemPageState extends State<ItemPage> {
   Future<void> _selectDate(BuildContext context)async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
+      locale: const Locale('id'),
       initialDate: DateTime.now(),
       firstDate: DateTime(2021),
       lastDate: DateTime(2028),
     );
 
     setState(() {
-      tanggalController.text = "${pickedDate?.day}/${pickedDate?.month}/${pickedDate?.year}";
+      tanggalController.text = DateFormat('EEEE, d MMMM yyyy', 'id').format(pickedDate!);
     });
   }
 
