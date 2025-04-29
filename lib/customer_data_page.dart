@@ -252,7 +252,18 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: () {     
-                   
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => DetailCustomerPage(
+                          namaCustomer: namaCustomerController.text,
+                          email: emailController.text,
+                          noHP: noHpController.text,
+                          alamat: alamatController.text,
+                          provinsi: provinsiController.text,
+                          kodePos: kodePosController.text,
+                        )
+                      ));
+                    }    
                 }, 
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
