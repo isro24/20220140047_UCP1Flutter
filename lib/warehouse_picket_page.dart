@@ -196,33 +196,50 @@ class _WarehousePicketPageState extends State<WarehousePicketPage> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: ListTile(
-                        tileColor: Colors.orange[700],
-                        textColor: Colors.white,
-                        title: Text(tugasPiketList[index], ),
-                        trailing: IconButton(
-                          icon: Icon(MdiIcons.arrowRight, color: Colors.white),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailPicketPage(
-                                  email: emailController.text,
-                                  tanggal: tanggalController.text,
-                                  tugasPiket: tugasPiketList[index],
+                      child: SizedBox(
+                        height: 60,
+                        child: Card(
+                          color: Colors.orange[700],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center, // ini penting
+                              children: [
+                                Text(
+                                  tugasPiketList[index],
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                                IconButton(
+                                  icon: Icon(MdiIcons.arrowRight, color: Colors.white),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailPicketPage(
+                                          email: emailController.text,
+                                          tanggal: tanggalController.text,
+                                          tugasPiket: tugasPiketList[index],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     );
                   },
                 ),
-              ),
+              )
             ],
           ),
         )),
