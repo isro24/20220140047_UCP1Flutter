@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1/home_page.dart';
 
 class DetailCustomerPage extends StatelessWidget {
    final String namaCustomer;
@@ -136,6 +137,28 @@ class DetailCustomerPage extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                  onPressed: (){
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage(
+                        email: email,
+                      )),
+                      (route) => false,
+                    );
+                  },
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    minimumSize: Size(200, 60),
+                    backgroundColor: Colors.orange[700]
+                  ), 
+                  child: Text('Selesai'))
+                )
                 ],
               ),
           )),
