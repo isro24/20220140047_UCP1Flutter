@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ucp1/home_page.dart';
 
 class DetailCustomerPage extends StatelessWidget {
-   final String namaCustomer;
   final String email;
+  final String namaCustomer;
+  final String emailCustomer;
   final String noHP;
   final String alamat;
   final String provinsi;
@@ -11,8 +12,9 @@ class DetailCustomerPage extends StatelessWidget {
 
   const DetailCustomerPage({
     super.key,
-    required this.namaCustomer,
     required this.email,
+    required this.namaCustomer,
+    required this.emailCustomer,
     required this.noHP,
     required this.alamat,
     required this.provinsi,
@@ -57,7 +59,7 @@ class DetailCustomerPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    email,
+                    emailCustomer,
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[700],

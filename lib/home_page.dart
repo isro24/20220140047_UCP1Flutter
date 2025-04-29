@@ -124,7 +124,9 @@ class HomePage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
                             Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => CustomerDataPage()));
+                              context, MaterialPageRoute(builder: (context) => CustomerDataPage(
+                                email: email,
+                              )));
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -158,7 +160,9 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     onTap: () {
                       Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => ItemPage()));
+                        context, MaterialPageRoute(builder: (context) => ItemPage(
+                          email: email,
+                        )));
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

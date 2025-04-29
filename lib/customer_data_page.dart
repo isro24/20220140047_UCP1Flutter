@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ucp1/detail_customer_page.dart';
 
 class CustomerDataPage extends StatefulWidget {
-  const CustomerDataPage({super.key});
+  final String email;
+  const CustomerDataPage({
+    super.key,
+    required this.email,
+  });
 
   @override
   State<CustomerDataPage> createState() => _CustomerDataPageState();
@@ -11,7 +15,7 @@ class CustomerDataPage extends StatefulWidget {
 class _CustomerDataPageState extends State<CustomerDataPage> {
 
   final TextEditingController namaCustomerController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController emailCustomerController = TextEditingController();
   final TextEditingController noHpController = TextEditingController();
   final TextEditingController alamatController = TextEditingController();
   final TextEditingController provinsiController = TextEditingController();
@@ -19,7 +23,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
 
   void clearTextFields(){
     namaCustomerController.clear();
-    emailController.clear();
+    emailCustomerController.clear();
     noHpController.clear();
     alamatController.clear();
     provinsiController.clear();
@@ -93,7 +97,7 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                         ), 
                         const SizedBox(height: 13,),
                         TextFormField(
-                          controller: emailController,
+                          controller: emailCustomerController,
                           decoration: InputDecoration(
                             hintText: 'Email',
                             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -256,11 +260,12 @@ class _CustomerDataPageState extends State<CustomerDataPage> {
                       Navigator.push(
                         context, MaterialPageRoute(builder: (context) => DetailCustomerPage(
                           namaCustomer: namaCustomerController.text,
-                          email: emailController.text,
+                          emailCustomer: emailCustomerController.text,
                           noHP: noHpController.text,
                           alamat: alamatController.text,
                           provinsi: provinsiController.text,
                           kodePos: kodePosController.text,
+                          email: widget.email,
                         )
                       ));
                     }    

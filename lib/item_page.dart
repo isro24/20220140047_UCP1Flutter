@@ -4,7 +4,11 @@ import 'package:ucp1/detail_item_page.dart';
 import 'package:intl/intl.dart';
 
 class ItemPage extends StatefulWidget {
-  const ItemPage({super.key});
+  final String email;
+  const ItemPage({
+    super.key,
+    required this.email,
+  });
 
   @override
   State<ItemPage> createState() => _ItemPageState();
@@ -12,7 +16,6 @@ class ItemPage extends StatefulWidget {
 
 class _ItemPageState extends State<ItemPage> {
 
-  final TextEditingController emailController = TextEditingController();
   final TextEditingController tanggalController = TextEditingController();
   final TextEditingController jumlahBarangController = TextEditingController();
   final TextEditingController hargaSatuanController = TextEditingController();
@@ -267,7 +270,7 @@ class _ItemPageState extends State<ItemPage> {
                    if(_formKey.currentState!.validate()){
                       Navigator.push(context, MaterialPageRoute(
                       builder: (context) => DetailItemPage(
-                        email: emailController.text,
+                        email: widget.email,
                         tanggal: tanggalController.text,
                         jenisTransaksi: jenisTransaksiList.firstWhere((element) => element == selectedJenisTransaksi),
                         jenisBarang: jenisBarangList.firstWhere((element) => element == selectedJenisBarang),
