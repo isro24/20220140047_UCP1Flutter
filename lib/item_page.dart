@@ -12,6 +12,7 @@ class ItemPage extends StatefulWidget {
 
 class _ItemPageState extends State<ItemPage> {
 
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController tanggalController = TextEditingController();
   final TextEditingController jumlahBarangController = TextEditingController();
   final TextEditingController hargaSatuanController = TextEditingController();
@@ -33,8 +34,8 @@ class _ItemPageState extends State<ItemPage> {
   };
 
   final List<String> jenisTransaksiList = [
-    'Masuk',
-    'Keluar',
+    'Barang Masuk',
+    'Barang Keluar',
   ];
 
   final List<String> jenisBarangList = [
@@ -266,6 +267,7 @@ class _ItemPageState extends State<ItemPage> {
                    if(_formKey.currentState!.validate()){
                       Navigator.push(context, MaterialPageRoute(
                       builder: (context) => DetailItemPage(
+                        email: emailController.text,
                         tanggal: tanggalController.text,
                         jenisTransaksi: jenisTransaksiList.firstWhere((element) => element == selectedJenisTransaksi),
                         jenisBarang: jenisBarangList.firstWhere((element) => element == selectedJenisBarang),

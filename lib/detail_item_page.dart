@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1/home_page.dart';
 
 class DetailItemPage extends StatelessWidget {
+  final String email;
   final String tanggal;
   final String jenisTransaksi;
   final String jenisBarang;
@@ -10,6 +12,7 @@ class DetailItemPage extends StatelessWidget {
 
   const DetailItemPage({
     super.key,
+    required this.email,
     required this.tanggal,
     required this.jenisTransaksi,
     required this.jenisBarang,
@@ -175,7 +178,28 @@ class DetailItemPage extends StatelessWidget {
                 color: Colors.grey[200],
                 thickness: 2,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 45),
+              SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                  onPressed: (){
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage(
+                        email: email,
+                      )),
+                      (route) => false,
+                    );
+                  },
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    minimumSize: Size(200, 50),
+                    backgroundColor: Colors.orange[700]
+                  ), 
+                  child: Text('Selesai'))
+                )
             ],    
           ) 
       ),
